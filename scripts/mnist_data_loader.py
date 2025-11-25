@@ -8,6 +8,7 @@ mnist_data/
 """
 
 import shutil
+import torch
 from pathlib import Path
 from torchvision import datasets
 from torch.utils.data import random_split
@@ -17,6 +18,7 @@ TRAIN_DIR = DATA_ROOT / "train"
 VAL_DIR = DATA_ROOT / "val"
 TEST_DIR = DATA_ROOT / "test"
 VAL_SPLIT = 0.1
+SEED = 42
 
 for d in [TRAIN_DIR, VAL_DIR, TEST_DIR]:
     d.mkdir(parents=True, exist_ok=True)
@@ -28,7 +30,8 @@ test_dataset = datasets.MNIST(root="../mnist_data", train=False, download=True)
 # Split train -> train + val
 val_size = int(VAL_SPLIT * len(train_dataset))
 train_size = len(train_dataset) - val_size
-train_ds, val_ds = random_split(train_dataset, [train_size, val_size])
+generator = torch.Generator().manual_seed(SEED)
+train_ds, val_ds = random_split(train_dataset, [train_size, val_size], generator=generator)
 
 
 def save_dataset(dataset, folder: Path):
