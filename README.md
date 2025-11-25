@@ -13,6 +13,8 @@ After you cloned the repo you can get started by installing the required package
 We are using [uv](https://docs.astral.sh/uv/) as our package manager. <br />
 You can find here a quick [guide](https://mocatex.github.io/mocatex-wiki/python/uv-package-manager/) to get started.
 
+So you need uv [installed](https://docs.astral.sh/uv/getting-started/installation/) on your system. <br />
+
 On the the repo there is a file called [pyproject.toml](pyproject.toml) which contains all the dependencies needed for this project. <br />
 Together with a [uv.lock](uv.lock) file which contains the exact versions of the packages.
 
